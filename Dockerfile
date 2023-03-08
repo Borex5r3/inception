@@ -6,7 +6,7 @@
 #    By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/03 11:25:01 by adbaich           #+#    #+#              #
-#    Updated: 2023/03/07 14:47:48 by adbaich          ###   ########.fr        #
+#    Updated: 2023/03/08 12:48:50 by adbaich          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,9 +38,7 @@ RUN		mkdir -p /var/www/adbaich.42.fr/html
 
 COPY	files/index.html	/var/www/adbaich.42.fr/html/
 
-COPY	files/nginx.conf	/etc/nginx/sites-available/adbaich.42.fr
-
-RUN		ln -s /etc/nginx/sites-available/your_domain /etc/nginx/sites-enabled/
+COPY	files/nginx.conf	/etc/nginx/sites-available/default
 
 EXPOSE 80
 
