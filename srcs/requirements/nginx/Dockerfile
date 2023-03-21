@@ -6,7 +6,7 @@
 #    By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/03 11:25:01 by adbaich           #+#    #+#              #
-#    Updated: 2023/03/19 12:28:31 by adbaich          ###   ########.fr        #
+#    Updated: 2023/03/21 12:59:04 by adbaich          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,6 @@ FROM	debian:buster-slim
 RUN		apt-get update -y && apt-get upgrade -y && apt-get install nginx vim -y
 
 RUN		mkdir -p /var/www/adbaich.42.fr/html
-
-COPY	./requirements/nginx/conf/nginx.conf	/etc/nginx/sites-available/default
 
 EXPOSE 80
 
