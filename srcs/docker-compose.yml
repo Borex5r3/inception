@@ -16,17 +16,13 @@ services:
       - ./requirements/nginx/conf/nginx.conf:/etc/nginx/sites-available/default
       - ./requirements/nginx/tools:/etc/nginx/ssl/
       - wp-volume:/var/www/
-    restart: always
+    init: true
 
   mariadb:
     build:
       context: .
       dockerfile: requirements/mariadb/Dockerfile
-      args:
-        DB_NAME: ${DB_NAME}
-        DB_USER: ${DB_USER}
-        DB_PASS: ${DB_PASS}
-        DB_ROOT: ${DB_ROOT}
+    env_file: .env
     container_name: mariadb
     ports:
       - "3306:3306"
@@ -34,24 +30,21 @@ services:
       - inception
     volumes:
       - db-volume:/var/lib/mysql
-    restart: always
-
+    init: true
+  
   wordpress:
     build:
       context: .
       dockerfile: requirements/wordpress/Dockerfile
-      args:
-        DB_NAME: ${DB_NAME}
-        DB_USER: ${DB_USER}
-        DB_PASS: ${DB_PASS}
     container_name: wordpress
     depends_on:
       - mariadb
+    env_file: .env
     networks:
       - inception
     volumes:
-      - wp-volume:/var/www/
-    restart: always
+      - wp-volume:/var/www
+    init: true
 
 volumes:
   wp-volume:
