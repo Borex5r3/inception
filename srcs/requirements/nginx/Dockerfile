@@ -34,9 +34,6 @@ FROM	debian:buster-slim
 
 RUN		apt-get update -y && apt-get upgrade -y && apt-get install nginx vim -y
 
-RUN		mkdir -p /var/www/adbaich.42.fr/html
-
 EXPOSE 80
 
-#CMD	["tail", "-f"]
 CMD ["nginx", "-g", "daemon off;"]

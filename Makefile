@@ -14,17 +14,20 @@
 
 
 all:
-	@docker-compose -f srcs/docker-compose.yml up --build
+	@docker compose -f srcs/docker-compose.yml up --build -d
 
 stop:
-	@docker-compose -f srcs/docker-compose.yml down
+	@docker compose -f srcs/docker-compose.yml down
 
 clean:
-	@docker rm -f $(docker ps -aq)
+	@docker rm -f $$(docker ps -aq) &> /dev/null ; true
 
-fclean:
-	@docker system prune -a
-	@docker volume rm -f $(docker volume ls -q) &> /dev/null ; true
-	@docker network rm -f $(docker network ls -q) &> /dev/null ; true
+fclean: clean
+	@docker system prune -af
+	
+	@docker volume rm -f $$(docker volume ls -q)  &> /dev/null ; true
+	@docker network rm -f $$(docker network ls -q) &> /dev/null ; true
+	@doas rm -rf /home/adbaich/data/mariadb/*
+	@doas rm -f /home/adbaich/data/wordpress/wp-config.php
 
 re: fclean all
