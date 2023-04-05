@@ -35,13 +35,13 @@ RUN mkdir -p /var/www /run/php
 
 COPY ./requirements/wordpress/conf/wordpress /var/www/
 
-COPY    ./requirements/wordpress/conf/php.ini	/etc/php/7.3/fpm/php.ini
-
 COPY    ./requirements/wordpress/conf/www.conf  /etc/php/7.3/fpm/pool.d/www.conf
 
 COPY	./requirements/wordpress/tools/script.sh	/usr/local/bin/script.sh
 
 RUN     curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
+
+EXPOSE	9000
 
 CMD	["bash", "/usr/local/bin/script.sh"]
 #CMD ["bash"]

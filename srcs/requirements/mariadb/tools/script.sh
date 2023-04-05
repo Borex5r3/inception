@@ -1,7 +1,5 @@
 #!/bin/sh
 
-#!/bin/sh
-
 service mysql start
 
 cat << EOF > /usr/local/bin/cr_db.sql
@@ -15,6 +13,3 @@ EOF
 mysql < /usr/local/bin/cr_db.sql
 
 service mysql stop
-
-#mysqld --bind-address=0.0.0.0
-#mysqld_safe --skip-networking=false

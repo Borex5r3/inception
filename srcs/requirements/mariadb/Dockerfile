@@ -18,10 +18,6 @@ ARG	DB_NAME \
 
 RUN		apt-get update -y && apt-get upgrade -y && apt-get install -y mariadb-server vim
 
-COPY    ./requirements/mariadb/conf/my.cnf	/etc/mysql/my.cnf
-
-COPY    ./requirements/mariadb/conf/50-server.cnf	/etc/mysql/mariadb.conf.d/50-server.cnf
-
 COPY     ./requirements/mariadb/tools/script.sh   /usr/local/bin/script.sh
 
 EXPOSE	3306
@@ -29,5 +25,3 @@ EXPOSE	3306
 RUN	/usr/local/bin/script.sh
 
 CMD	["mysqld", "--bind-address=0.0.0.0"]
-
-#CMD		["mysqld_safe", "--skip-networking=false"]
