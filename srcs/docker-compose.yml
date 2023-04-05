@@ -17,6 +17,7 @@ services:
       - ./requirements/nginx/tools:/etc/nginx/ssl/
       - wp-volume:/var/www/
     init: true
+    restart: always
 
   mariadb:
     build:
@@ -35,6 +36,7 @@ services:
     volumes:
       - db-volume:/var/lib/mysql
     init: true
+    restart: always
   
   wordpress:
     build:
@@ -49,6 +51,7 @@ services:
     volumes:
       - wp-volume:/var/www
     init: true
+    restart: always
 
 volumes:
   wp-volume:
