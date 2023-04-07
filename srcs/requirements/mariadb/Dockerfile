@@ -6,7 +6,7 @@
 #    By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/14 11:24:44 by adbaich           #+#    #+#              #
-#    Updated: 2023/03/21 16:11:22 by adbaich          ###   ########.fr        #
+#    Updated: 2023/04/06 17:45:32 by adbaich          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ FROM	debian:buster-slim
 
 ARG	DB_NAME \
 	DB_USER \
-	DB_PASS
+	DB_PASS \
+	MYSQL_ROOT_PASSWORD
 
 RUN		apt-get update -y && apt-get upgrade -y && apt-get install -y mariadb-server vim
 

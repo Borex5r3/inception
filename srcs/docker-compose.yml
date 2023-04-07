@@ -17,7 +17,7 @@ services:
       - ./requirements/nginx/tools:/etc/nginx/ssl/
       - wp-volume:/var/www/
     init: true
-    restart: always
+    restart: on-failure
 
   mariadb:
     build:
@@ -27,6 +27,7 @@ services:
         - DB_NAME=${DB_NAME}
         - DB_USER=${DB_USER}
         - DB_PASS=${DB_PASS}
+        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     env_file: .env
     container_name: mariadb
     ports:
@@ -36,7 +37,7 @@ services:
     volumes:
       - db-volume:/var/lib/mysql
     init: true
-    restart: always
+    restart: on-failure
   
   wordpress:
     build:
@@ -51,7 +52,7 @@ services:
     volumes:
       - wp-volume:/var/www
     init: true
-    restart: always
+    restart: on-failure
 
 volumes:
   wp-volume:

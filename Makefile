@@ -21,13 +21,13 @@ stop:
 
 clean:
 	@docker rm -f $$(docker ps -aq) &> /dev/null ; true
+	@doas rm -f /home/adbaich/data/wordpress/wp-config.php
+	@doas rm -rf /home/adbaich/data/mariadb/*
 
 fclean: clean
 	@docker system prune -af
 	
 	@docker volume rm -f $$(docker volume ls -q)  &> /dev/null ; true
 	@docker network rm -f $$(docker network ls -q) &> /dev/null ; true
-	@doas rm -rf /home/adbaich/data/mariadb/*
-	@doas rm -f /home/adbaich/data/wordpress/wp-config.php
 
 re: fclean all
